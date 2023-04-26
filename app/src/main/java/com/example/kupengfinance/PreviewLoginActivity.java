@@ -32,5 +32,5 @@ public class PreviewLoginActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
-}
+    }
 }
