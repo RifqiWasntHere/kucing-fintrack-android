@@ -12,6 +12,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backfsignin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="?attr/homeAsUpIndicator"
+            android:paddingTop="25dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -20,7 +27,7 @@
             android:textSize="25dp"
             android:textColor="@color/black"
             android:paddingTop="50dp"
-            android:paddingBottom="180dp"/>
+            android:paddingBottom="150dp"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +65,7 @@
             android:layout_alignParentTop="true"
             android:layout_margin="10dp"
             android:textSize="18sp" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
