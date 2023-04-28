@@ -1,9 +1,14 @@
-package com.example.kupengfinance;
+package com.example.kupengfinance.Activity;
 
 import android.os.Bundle;
+
+import com.example.kupengfinance.Fragment.AccountFragment;
+import com.example.kupengfinance.Fragment.HomeFragment;
+import com.example.kupengfinance.Fragment.LogoutFragment;
+import com.example.kupengfinance.Fragment.TransactionFragment;
+import com.example.kupengfinance.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import java.io.*;
-import com.example.kupengfinance.*;
+
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
