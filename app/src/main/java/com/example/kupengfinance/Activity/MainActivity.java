@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.example.kupengfinance.Fragment.AccountFragment;
 import com.example.kupengfinance.Fragment.HomeFragment;
-import com.example.kupengfinance.Fragment.LogoutFragment;
+import com.example.kupengfinance.Fragment.SettingFragment;
 import com.example.kupengfinance.Fragment.TransactionFragment;
 import com.example.kupengfinance.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     HomeFragment homeFragment = new HomeFragment();
     TransactionFragment transactionFragment = new TransactionFragment();
     AccountFragment accountFragment = new AccountFragment();
-    LogoutFragment logoutFragment = new LogoutFragment();
+    SettingFragment settingFragment = new SettingFragment();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 return true;
 
-            case R.id.logout:
+            case R.id.setting:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.flFragment, logoutFragment)
+                        .replace(R.id.flFragment, settingFragment)
                         .commit();
                 return true;
         }

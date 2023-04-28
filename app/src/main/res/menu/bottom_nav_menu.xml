@@ -14,7 +14,7 @@
         android:title="Account"
         android:icon="@drawable/ic_account_foreground"/>
     <item
-        android:id="@+id/logout"
-        android:title="Logout"
+        android:id="@+id/setting"
+        android:title="Setting"
         android:icon="@drawable/ic_logout_foreground"/>
 </menu>
