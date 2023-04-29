@@ -11,10 +11,14 @@ import android.widget.TextView;
 
 import com.example.kupengfinance.R;
 
+import org.w3c.dom.Text;
+
 public class SignInActivity extends AppCompatActivity {
     Button sign;
     TextView gosignup;
+    TextView forgetpass;
     ImageView backfsignin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,7 @@ public class SignInActivity extends AppCompatActivity {
         sign = (Button) findViewById(R.id.btnsign);
         gosignup = (TextView) findViewById(R.id.gosignup);
         backfsignin = (ImageView) findViewById(R.id.backfsignin);
+        forgetpass = (TextView) findViewById(R.id.forget);
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +47,13 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(SignInActivity.this, RegisterActivity.class);
+                startActivity(loginIntent);
+            }
+        });
+        forgetpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent loginIntent = new Intent(SignInActivity.this, ForgetPasswordActivity.class);
                 startActivity(loginIntent);
             }
         });
