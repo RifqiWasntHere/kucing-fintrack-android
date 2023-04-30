@@ -14,6 +14,7 @@ import com.example.kupengfinance.R;
 public class RegisterActivity extends AppCompatActivity {
     TextView tosign;
     ImageView backfsignup;
+    Button btnsignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         tosign = (TextView) findViewById(R.id.tosignin);
         backfsignup = (ImageView) findViewById(R.id.backfsignup);
+        btnsignup = (Button)findViewById(R.id.signup);
 
         backfsignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +35,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(RegisterActivity.this,  SignInActivity.class);
+                startActivity(loginIntent);
+            }
+        });
+
+        btnsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(RegisterActivity.this, SignInActivity.class);
                 startActivity(loginIntent);
             }
         });
