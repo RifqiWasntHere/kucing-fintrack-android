@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.example.kupengfinance.R;
 
-import org.w3c.dom.Text;
-
 public class SignInActivity extends AppCompatActivity {
     Button sign;
     TextView gosignup;
@@ -26,16 +24,14 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
 
         sign = (Button) findViewById(R.id.btnsign);
-        gosignup = (TextView) findViewById(R.id.gosignup);
-        backfsignin = (ImageView) findViewById(R.id.backfsignin);
-        forgetpass = (TextView) findViewById(R.id.forget);
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent(SignInActivity.this, MainActivity.class);
+                Intent loginIntent = new Intent (SignInActivity.this, MainActivity.class);
                 startActivity(loginIntent);
             }
         });
+        backfsignin = (ImageView) findViewById(R.id.backfsignin);
         backfsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +39,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+        gosignup = (TextView) findViewById(R.id.gosignup);
         gosignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +47,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+        forgetpass = (TextView) findViewById(R.id.forget);
         forgetpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
