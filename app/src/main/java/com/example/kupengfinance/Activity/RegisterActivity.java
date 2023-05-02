@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
-    private String BASE_URL = "https://kucing-finance-backend-production.up.railway.app/user/signup";
+    private String BASE_URL = "https://kucing-finance-backend-production.up.railway.app/user/signup/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

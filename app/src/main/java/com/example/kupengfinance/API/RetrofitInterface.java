@@ -11,10 +11,10 @@ import retrofit2.http.POST;
 
 public interface RetrofitInterface {
 
-    @POST("/login")
+    @POST("/login/")
     Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
 
-    @POST("/signup")
+    @POST("/signup/")
     Call<Void> executeSignUp(@Body HashMap<String, String> map);
 
 //    @FormUrlEncoded
