@@ -18,4 +18,8 @@
 
     <!-- Forget Password -->
     <string name="Text_forget_password">Enter the email address you used to register, and we will send you an email to recover your password.</string>
+    <string-array name="category">spin
+        <item>Card</item>
+        <item>Cash</item>
+    </string-array>
 </resources>
