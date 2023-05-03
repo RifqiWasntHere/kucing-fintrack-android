@@ -4,18 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.kupengfinance.API.Login_model;
+import com.example.kupengfinance.API.RetrofitInterface;
+import com.example.kupengfinance.API.Signup_model;
 import com.example.kupengfinance.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.Response;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignInActivity extends AppCompatActivity {
     Button sign;
     TextView gosignup;
     TextView forgetpass;
     ImageView backfsignin;
+    EditText emailEdt, passwordEdt;
 
 
     @Override
@@ -39,14 +52,6 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
-        gosignup = (TextView) findViewById(R.id.gosignup);
-        gosignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent loginIntent = new Intent(SignInActivity.this, RegisterActivity.class);
-                startActivity(loginIntent);
-            }
-        });
         forgetpass = (TextView) findViewById(R.id.forget);
         forgetpass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,5 +60,61 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+        gosignup = (TextView) findViewById(R.id.gosignup);
+        gosignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (emailEdt.getText().toString().equals("") || passwordEdt.getText().toString().equals("")){
+                    Toast.makeText(SignInActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    handleLogin(emailEdt.getText().toString(), passwordEdt.getText().toString());
+                }
+            }
+        });
+    }
+
+    private void handleLogin(String email, String password) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+        Login_model login = new Login_model(email, password);
+
+        Call<Login_model> call = retrofitInterface.executeLogin(login);
+
+        call.enqueue(new Callback<Login_model>(){
+            @Override
+            public void onResponse(Call<Login_model> call, Response<Login_model> response){
+                if (response.code() == 201) {
+                    Toast.makeText(SignInActivity.this, "Signed Up Successfuly", Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(SignInActivity.this, SignInActivity.class);
+                    startActivity(loginIntent);
+                } else if (response.code() == 400) {
+                    Toast.makeText(SignInActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
+                }
+                Toast.makeText(SignInActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
+
+                // we are getting response from our body
+                // and passing it to our modal class.
+                Login_model responseFromAPI = response.body();
+
+                // on below line we are getting our data from modal class
+                // and adding it to our string.
+//                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();
+
+                // below line we are setting our
+                // string to our text view.
+                Log.i(String.valueOf(response.code()), "ingfo");
+            }
+            @Override
+            public void onFailure(Call<Login_model> call, Throwable t) {
+                Toast.makeText(SignInActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+       });
     }
 }
