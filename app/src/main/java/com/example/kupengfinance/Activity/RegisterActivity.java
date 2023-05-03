@@ -38,8 +38,11 @@ public class RegisterActivity extends AppCompatActivity {
         usernameEdt = (EditText) findViewById(R.id.Rusername);
         emailEdt = (EditText) findViewById(R.id.Remail);
         passwordEdt = (EditText) findViewById(R.id.Rpassword);
-
+        tosign = (TextView) findViewById(R.id.tosignin);
         backfsignup = (ImageView) findViewById(R.id.backfsignup);
+        btnsignup = (Button) findViewById(R.id.signup);
+
+
         backfsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,8 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
-
-        tosign = (TextView) findViewById(R.id.tosignin);
         tosign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,8 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
-
-        btnsignup = (Button) findViewById(R.id.signup);
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +101,8 @@ public class RegisterActivity extends AppCompatActivity {
                 // below line we are setting our
                 // string to our text view.
                 Log.i(String.valueOf(response.code()), "ingfo");
+                Intent loginIntent = new Intent(RegisterActivity.this, SignInActivity.class);
+                startActivity(loginIntent);
             }
 
 
