@@ -11,4 +11,6 @@
     <color name="gray">#B7B7B7</color>
     <color name="red">#FF0000</color>
     <color name="silver">#C0C0C0</color>
+    <color name="lightsalmon">#FFA07A</color>
+
 </resources>
