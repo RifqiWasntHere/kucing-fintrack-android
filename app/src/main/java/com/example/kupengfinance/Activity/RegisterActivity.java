@@ -15,6 +15,8 @@ import com.example.kupengfinance.API.RetrofitInterface;
 import com.example.kupengfinance.API.Signup_model;
 import com.example.kupengfinance.R;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleSignUp(usernameEdt.getText().toString(), emailEdt.getText().toString(), passwordEdt.getText().toString());
+                if (usernameEdt.getText().toString().equals("") || emailEdt.getText().toString().equals("") || passwordEdt.getText().toString().equals("")){
+                    Toast.makeText(RegisterActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    handleSignUp(usernameEdt.getText().toString(), emailEdt.getText().toString(), passwordEdt.getText().toString());
+                }
             }
         });
     }
@@ -68,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void handleSignUp(String username, String email, String password) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
-                // add Gson(json) converter factory
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         // below line is to create an instance for our retrofit api class.
@@ -83,11 +90,13 @@ public class RegisterActivity extends AppCompatActivity {
         call.enqueue(new Callback<Signup_model>() {
             @Override
             public void onResponse(Call<Signup_model> call, Response<Signup_model> response) {
-//                if (response.code() == 201){
-//                    Toast.makeText(RegisterActivity.this, "Signed Up Successfuly", Toast.LENGTH_LONG).show();
-//                } else if (response.code() == 400){
-//                    Toast.makeText(RegisterActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
-//                }
+                if (response.code() == 201){
+                    Toast.makeText(RegisterActivity.this, "Signed Up Successfuly", Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(RegisterActivity.this, SignInActivity.class);
+                    startActivity(loginIntent);
+                } else if (response.code() == 400){
+                    Toast.makeText(RegisterActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
+                }
                 Toast.makeText(RegisterActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
 
                 // we are getting response from our body
@@ -101,14 +110,13 @@ public class RegisterActivity extends AppCompatActivity {
                 // below line we are setting our
                 // string to our text view.
                 Log.i(String.valueOf(response.code()), "ingfo");
-                Intent loginIntent = new Intent(RegisterActivity.this, SignInActivity.class);
-                startActivity(loginIntent);
+
             }
 
 
             @Override
             public void onFailure(Call<Signup_model> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
