@@ -34,13 +34,13 @@
         app:layout_constraintVertical_bias="0.093" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width="290dp"
         android:layout_height="52dp"
         android:layout_marginTop="72dp"
         android:paddingLeft="20dp"
         android:background="@drawable/custom_edittext"
-        android:hint="Username"
+        android:hint="Email"
         android:textSize="20sp"
         android:fontFamily="@font/red_hat_display"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
         android:paddingLeft="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
