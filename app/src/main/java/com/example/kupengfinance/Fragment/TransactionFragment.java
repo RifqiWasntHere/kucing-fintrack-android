@@ -70,7 +70,6 @@ public class TransactionFragment extends Fragment {
 
         adapter.addFragment(new LastMonthFragment(), "Last Month");
         adapter.addFragment(new ThisMonthFragment(), "This Month");
-        adapter.addFragment(new FutureFragment(), "Future");
 
         viewPager.setAdapter(adapter);
     }
