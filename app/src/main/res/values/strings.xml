@@ -22,4 +22,11 @@
         <item>Card</item>
         <item>Cash</item>
     </string-array>
+    
+    <!-- RecyclerView This Month -->
+    <string name="Category">Category</string>
+    <string name="Transaction">Transaction</string>
+    <string name="Account">Account</string>
+    <string name="Cash">Cash</string>
+
 </resources>
