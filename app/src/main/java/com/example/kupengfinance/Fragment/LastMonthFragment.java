@@ -4,21 +4,31 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.kupengfinance.API.Transaction_Model;
 import com.example.kupengfinance.Activity.ChangePasswordActivity;
 import com.example.kupengfinance.Activity.PreviewLoginActivity;
 import com.example.kupengfinance.Activity.TransactionActivity;
+import com.example.kupengfinance.Adapter.RecyclerViewAdapter;
 import com.example.kupengfinance.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 
 public class LastMonthFragment extends Fragment {
+
+    private ArrayList<Transaction_Model> list = new ArrayList<>();
 
     FloatingActionButton totrans;
 
@@ -49,5 +59,26 @@ public class LastMonthFragment extends Fragment {
             }
         });
         return view;
+    }
+    private void initRecycleView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.viewLastMonth);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(list);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        buildListData();
+        initRecycleView(view);
+    }
+
+    private void buildListData(){
+        list = new ArrayList<>();
+
     }
 }
