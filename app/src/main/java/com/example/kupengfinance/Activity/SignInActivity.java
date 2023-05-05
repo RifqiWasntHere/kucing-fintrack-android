@@ -36,12 +36,20 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
+        emailEdt = (EditText) findViewById(R.id.email);
+        passwordEdt = (EditText) findViewById(R.id.pass);
+
         sign = (Button) findViewById(R.id.btnsign);
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent (SignInActivity.this, MainActivity.class);
-                startActivity(loginIntent);
+                if (emailEdt.getText().toString().equals("") || passwordEdt.getText().toString().equals("")){
+                    Toast.makeText(SignInActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    handleLogin(emailEdt.getText().toString(), passwordEdt.getText().toString());
+                }
             }
         });
         backfsignin = (ImageView) findViewById(R.id.backfsignin);
@@ -64,18 +72,13 @@ public class SignInActivity extends AppCompatActivity {
         gosignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (emailEdt.getText().toString().equals("") || passwordEdt.getText().toString().equals("")){
-                    Toast.makeText(SignInActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else {
-                    handleLogin(emailEdt.getText().toString(), passwordEdt.getText().toString());
-                }
+                Intent loginIntent = new Intent(SignInActivity.this, RegisterActivity.class);
+                startActivity(loginIntent);
             }
         });
     }
 
-    private void handleLogin(String email, String password) {
+    private void handleLogin(String email, String pass) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,24 +86,24 @@ public class SignInActivity extends AppCompatActivity {
 
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
-        Login_model login = new Login_model(email, password);
+        Login_model login = new Login_model(email, pass);
 
         Call<Login_model> call = retrofitInterface.executeLogin(login);
 
         call.enqueue(new Callback<Login_model>(){
             @Override
             public void onResponse(Call<Login_model> call, Response<Login_model> response){
-                if (response.code() == 201) {
-                    Toast.makeText(SignInActivity.this, "Signed Up Successfuly", Toast.LENGTH_LONG).show();
-                    Intent loginIntent = new Intent(SignInActivity.this, SignInActivity.class);
+                if (response.code() == 200) {
+                    Toast.makeText(SignInActivity.this, "Signed In Successfuly", Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(loginIntent);
                 } else if (response.code() == 400) {
-                    Toast.makeText(SignInActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignInActivity.this, "User Not Found", Toast.LENGTH_LONG).show();
                 }
                 Toast.makeText(SignInActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
 
                 // we are getting response from our body
-                // and passing it to our modal class.
+                // and passing it to our modal class
                 Login_model responseFromAPI = response.body();
 
                 // on below line we are getting our data from modal class
