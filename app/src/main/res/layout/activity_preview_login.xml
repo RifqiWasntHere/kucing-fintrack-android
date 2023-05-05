@@ -7,15 +7,16 @@
     tools:context=".Activity.PreviewLoginActivity"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:paddingBottom="50dp">
+    android:paddingBottom="50dp"
+    android:background="#E0E0E0">
 
     <Button
         android:id="@+id/btntoregist"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="363dp"
+        android:layout_height="39dp"
+        android:background="@drawable/custom_button"
         android:text="Register"
         android:textStyle="bold"
-        android:background="@drawable/custom_button2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -25,11 +26,11 @@
 
     <Button
         android:id="@+id/btntosign"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="363dp"
+        android:layout_height="39dp"
+        android:background="@drawable/custom_button2"
         android:text="Sign In"
         android:textStyle="bold"
-        android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
