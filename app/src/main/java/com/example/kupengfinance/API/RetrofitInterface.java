@@ -6,7 +6,7 @@ import retrofit2.http.POST;
 
 public interface RetrofitInterface {
 
-    @POST("login/")
+    @POST("signin/")
     Call<Login_model> executeLogin(@Body Login_model login_model);
 
     @POST("signup/")
