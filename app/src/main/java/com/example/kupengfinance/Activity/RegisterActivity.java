@@ -42,9 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEdt = (EditText) findViewById(R.id.Rpassword);
         tosign = (TextView) findViewById(R.id.tosignin);
         backfsignup = (ImageView) findViewById(R.id.backfsignup);
+
         btnsignup = (Button) findViewById(R.id.signup);
-
-
         backfsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
