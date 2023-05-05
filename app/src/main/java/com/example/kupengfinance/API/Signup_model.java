@@ -2,12 +2,12 @@ package com.example.kupengfinance.API;
 
 public class Signup_model {
 
-    private String username, email, password;
+    private String username, email, pass;
 
-    public Signup_model(String username, String email, String password){
+    public Signup_model(String username, String email, String pass){
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.pass = pass;
     }
     public String getUsername() {
         return username;
@@ -16,7 +16,7 @@ public class Signup_model {
         return email;
     }
     public String getPassword() {
-        return password;
+        return pass;
     }
 
     public void setUsername(String username) {
@@ -28,6 +28,6 @@ public class Signup_model {
     }
     public void setPassword(String password) {
 
-        this.password = password;
+        this.pass = pass;
     }
 }
