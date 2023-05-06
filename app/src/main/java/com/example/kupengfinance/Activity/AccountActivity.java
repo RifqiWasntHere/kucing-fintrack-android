@@ -137,8 +137,6 @@ public class AccountActivity extends AppCompatActivity {
 
     private void initList()
     {
-        spinner_models = new ArrayList<>();
-        spinner_models.add(new Spinner_Model("Card"));
-        spinner_models.add(new Spinner_Model("Cash"));
+
     }
 }
