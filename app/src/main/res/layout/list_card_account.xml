@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textCategory"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/Category">
+        </TextView>
+    <TextView
+        android:layout_width="130dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp">
+    </TextView>
+        <TextView
+            android:id="@+id/textCash"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:textAlignment="center"
+            android:text="@string/Cash">
+        </TextView>
+
+</LinearLayout>
