@@ -14,23 +14,23 @@ import com.example.kupengfinance.R;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapterTransaction extends RecyclerView.Adapter<RecyclerViewAdapterTransaction.MyViewHolder> {
     private List<Transaction_Model> list;
     Context context;
 
-    public RecyclerViewAdapter(List<Transaction_Model> list){
+    public RecyclerViewAdapterTransaction(List<Transaction_Model> list){
         this.list = list;
     }
     @NonNull
     @Override
-    public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapterTransaction.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.this_month_row,parent,false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewAdapterTransaction.MyViewHolder holder, int position) {
 
         Transaction_Model transaction_model = list.get(position);
         holder.categoryTxt.setText(transaction_model.category);
