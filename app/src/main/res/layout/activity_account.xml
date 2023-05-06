@@ -61,7 +61,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/aname"
+                android:id="@+id/accname"
                 android:layout_width="270dp"
                 android:layout_height="35dp" />
 
@@ -79,25 +79,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/aamount"
-                android:layout_width="270dp"
-                android:layout_height="35dp" />
-
-        </TableRow>
-
-        <TableRow android:background="@color/silver">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="16dp"
-                android:paddingLeft="10dp"
-                android:text="Note"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/anote"
+                android:id="@+id/accamount"
                 android:layout_width="270dp"
                 android:layout_height="35dp" />
 
@@ -106,7 +88,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnconfirm"
         android:layout_width="308dp"
         android:layout_height="41dp"
         android:layout_marginBottom="440dp"
