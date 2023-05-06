@@ -68,8 +68,19 @@ public class TransactionFragment extends Fragment {
     private void setUpViewPager(ViewPager viewPager) {
         SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
 
-        adapter.addFragment(new LastMonthFragment(), "Last Month");
-        adapter.addFragment(new ThisMonthFragment(), "This Month");
+        adapter.addFragment(new LastMonthFragment(), "January");
+        adapter.addFragment(new ThisMonthFragment(), "February");
+        adapter.addFragment(new MarchFragment(), "March");
+        adapter.addFragment(new AprilFragment(), "April");
+        adapter.addFragment(new MayFragment(), "May");
+        adapter.addFragment(new JuneFragment(), "June");
+        adapter.addFragment(new JulyFragment(), "July");
+        adapter.addFragment(new AugustFragment(), "August");
+        adapter.addFragment(new SeptemberFragment(), "September");
+        adapter.addFragment(new OctoberFragment(), "October");
+        adapter.addFragment(new NovemberFragment(), "November");
+        adapter.addFragment(new DecemberFragment(), "December");
+
 
         viewPager.setAdapter(adapter);
     }

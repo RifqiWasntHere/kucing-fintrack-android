@@ -24,7 +24,7 @@
             android:background="@color/white"
             android:backgroundTint="@color/gray"
             app:tabGravity="fill"
-            app:tabMode="fixed"
+            app:tabMode="scrollable"
             tools:layout_editor_absoluteX="-16dp"
             tools:layout_editor_absoluteY="-11dp"></com.google.android.material.tabs.TabLayout>
 
