@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.kupengfinance.API.Transaction_Model;
 import com.example.kupengfinance.Activity.TransactionActivity;
-import com.example.kupengfinance.Adapter.RecyclerViewAdapter;
+import com.example.kupengfinance.Adapter.RecyclerViewAdapterTransaction;
 import com.example.kupengfinance.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -61,7 +61,7 @@ public class LastMonthFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(list);
+        RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction(list);
         recyclerView.setAdapter(adapter);
     }
 
