@@ -12,4 +12,7 @@ public interface RetrofitInterface {
     @POST("signup/")
     Call<Signup_model> createSignUp(@Body Signup_model signup_model);
 
+    @POST("cash/add/")
+    Call<Account_Model_Cash> addCash(@Body Account_Model_Cash account_model_cash);
+
 }
