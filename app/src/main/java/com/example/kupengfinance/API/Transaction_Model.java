@@ -2,7 +2,7 @@ package com.example.kupengfinance.API;
 
 public class Transaction_Model {
 
-    public String category;
+    public  String category;
     public String transaction;
     public String account;
     public String cash;
