@@ -21,16 +21,14 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="393dp"
-        android:layout_height="139dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.158">
-
         <TableRow android:background="@color/silver">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,12 +46,11 @@
                 android:textAlignment="center" />
 
         </TableRow>
-
         <TableRow android:background="@color/silver">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:paddingRight="16dp"
                 android:paddingLeft="10dp"
                 android:text="Name"
@@ -63,17 +60,22 @@
             <EditText
                 android:id="@+id/accname"
                 android:layout_width="270dp"
-                android:layout_height="35dp" />
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"/>
 
         </TableRow>
 
-        <TableRow android:background="@color/silver">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/silver">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="16dp"
+                android:layout_marginTop="16dp"
                 android:paddingLeft="10dp"
+                android:paddingRight="16dp"
                 android:text="Amount"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -81,7 +83,8 @@
             <EditText
                 android:id="@+id/accamount"
                 android:layout_width="270dp"
-                android:layout_height="35dp" />
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp" />
 
         </TableRow>
 
