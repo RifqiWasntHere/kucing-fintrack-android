@@ -12,7 +12,6 @@ public class Account_Model_Cash {
         this.cashBalance = cashBalance;
     }
 
-
     public String getUserId() {
         return userId;
     }
