@@ -37,9 +37,10 @@
             android:exported="false" />
         <activity
             android:name=".Activity.PreviewLoginActivity"
+            android:theme="@style/Theme.KupengFinance"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
