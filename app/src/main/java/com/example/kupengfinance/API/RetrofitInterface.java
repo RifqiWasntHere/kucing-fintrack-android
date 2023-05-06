@@ -15,4 +15,7 @@ public interface RetrofitInterface {
     @POST("cash/add/")
     Call<Account_Model_Cash> addCash(@Body Account_Model_Cash account_model_cash);
 
+    @POST("card/add/")
+    Call<Account_Model_Card> addCard(@Body Account_Model_Card account_model_card);
+
 }
