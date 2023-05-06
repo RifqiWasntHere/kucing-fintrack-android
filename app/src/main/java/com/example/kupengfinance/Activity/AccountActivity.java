@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.kupengfinance.API.Account_Model_Card;
 import com.example.kupengfinance.API.Account_Model_Cash;
 import com.example.kupengfinance.API.RetrofitInterface;
 import com.example.kupengfinance.API.Signup_model;
@@ -69,11 +70,13 @@ public class AccountActivity extends AppCompatActivity {
                     Toast.makeText(AccountActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else if(val.equals("Cash") || accnameEdt.getText().toString().equals("") || accamountEdt.getText().toString().equals("")){
-                    Toast.makeText(AccountActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
-                    if (val.equals("Cash")) {
-                        handleAccountCash(userId, accnameEdt.getText().toString(), accamountEdt.getText().toString());
-                    }
+                if(val.equals("Cash")) {
+                    handleAccountCash(userId, accnameEdt.getText().toString(), accamountEdt.getText().toString());
+                    return;
+                }
+                if(val.equals("Card")) {
+                    handleAccountCard(userId, accnameEdt.getText().toString(), accamountEdt.getText().toString());
+                    return;
                 }
             }
         });
@@ -130,6 +133,53 @@ public class AccountActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account_Model_Cash> call, Throwable t) {
+                Toast.makeText(AccountActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void handleAccountCard(String userId, String cardName, String cardBalance) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // below line is to create an instance for our retrofit api class.
+        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+        Account_Model_Card account_model_card = new Account_Model_Card(userId, cardName, cardBalance);
+//        Log.i(username.toString(),"Username");
+//        Log.i(email.toString(),"Email");
+//        Log.i(password.toString(),"Password");
+        Call<Account_Model_Card> call = retrofitInterface.addCard(account_model_card);
+
+        call.enqueue(new Callback<Account_Model_Card>() {
+            @Override
+            public void onResponse(Call<Account_Model_Card> call, Response<Account_Model_Card> response) {
+                if (response.code() == 201) {
+                    Toast.makeText(AccountActivity.this, "Card Added", Toast.LENGTH_LONG).show();
+                    Intent loginIntent = new Intent(AccountActivity.this, AccountActivity.class);
+                    startActivity(loginIntent);
+                } else if (response.code() == 400) {
+                    Toast.makeText(AccountActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
+                }
+                Toast.makeText(AccountActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
+
+                // we are getting response from our body
+                // and passing it to our modal class.
+                Account_Model_Card responseFromAPI = response.body();
+
+                // on below line we are getting our data from modal class
+                // and adding it to our string.
+//                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();
+
+                // below line we are setting our
+                // string to our text view.
+                Log.i(String.valueOf(response.code()), "ingfo");
+
+            }
+
+
+            @Override
+            public void onFailure(Call<Account_Model_Card> call, Throwable t) {
                 Toast.makeText(AccountActivity.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
