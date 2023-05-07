@@ -23,7 +23,7 @@
         android:id="@+id/changespassword"
         android:layout_width="214dp"
         android:layout_height="32dp"
-        android:text="Changes Password"
+        android:text="Change Password"
         android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
