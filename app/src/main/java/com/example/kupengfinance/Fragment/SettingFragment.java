@@ -1,8 +1,11 @@
 package com.example.kupengfinance.Fragment;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kupengfinance.Activity.ChangePasswordActivity;
 import com.example.kupengfinance.Activity.MainActivity;
@@ -58,10 +62,35 @@ public class SettingFragment extends DialogFragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showDialog();
+            }
+        });
+        return view;
+    }
+
+    public void showDialog() {
+        final AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+        builder.setTitle("Logout");
+
+        builder.setMessage("Do you want to log out from the app?");
+
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getActivity(), "You has been logout", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), PreviewLoginActivity.class);
                 startActivity(intent);
             }
         });
-        return view;
+
+        builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                builder.create().dismiss();
+            }
+        });
+        builder.show();
     }
 }
