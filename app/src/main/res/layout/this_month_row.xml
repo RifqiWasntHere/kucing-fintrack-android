@@ -7,10 +7,10 @@
     <TextView
         android:id="@+id/textCategory"
         android:layout_width="100dp"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:text="@string/Category">
     </TextView>
 
@@ -22,7 +22,7 @@
         android:layout_toRightOf="@+id/textInput"
         android:orientation="vertical"
         android:textAlignment="center"
-        android:layout_marginRight="16dp">
+        android:layout_marginRight="8dp">
         <TextView
             android:id="@+id/textTransaction"
             android:layout_width="150dp"
@@ -45,8 +45,8 @@
 
     <TextView
         android:id="@+id/textCash"
-        android:layout_width="90dp"
-        android:layout_height="20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"

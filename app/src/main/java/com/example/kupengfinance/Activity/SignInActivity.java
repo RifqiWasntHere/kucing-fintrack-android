@@ -105,7 +105,7 @@ public class SignInActivity extends AppCompatActivity {
                 // we are getting response from our body
                 // and passing it to our modal class
                 Login_model responseFromAPI = response.body();
-
+                Log.d("response body", String.valueOf(response.code()));
                 // on below line we are getting our data from modal class
                 // and adding it to our string.
 //                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();

@@ -73,5 +73,21 @@ public class ThisMonthFragment extends Fragment {
         list.add(new Transaction_Model("Pengeluaran", "Makan","Charish","50000"));
         list.add(new Transaction_Model("Pengeluaran", "Bensin","Charish","70000"));
         list.add(new Transaction_Model("Pengeluaran", "Nonton","Charish","100000"));
+        list.add(new Transaction_Model("Pengeluaran", "Jajan","Charish","10000"));
+        list.add(new Transaction_Model("Pengeluaran", "Makan","Charish","50000"));
+        list.add(new Transaction_Model("Pengeluaran", "Bensin","Charish","70000"));
+        list.add(new Transaction_Model("Pengeluaran", "Nonton","Charish","100000"));
+        list.add(new Transaction_Model("Pengeluaran", "Jajan","Charish","10000"));
+        list.add(new Transaction_Model("Pengeluaran", "Makan","Charish","50000"));
+        list.add(new Transaction_Model("Pengeluaran", "Bensin","Charish","70000"));
+        list.add(new Transaction_Model("Pengeluaran", "Nonton","Charish","100000"));
+        list.add(new Transaction_Model("Pengeluaran", "Jajan","Charish","10000"));
+        list.add(new Transaction_Model("Pengeluaran", "Makan","Charish","50000"));
+        list.add(new Transaction_Model("Pengeluaran", "Bensin","Charish","70000"));
+        list.add(new Transaction_Model("Pengeluaran", "Nonton","Charish","100000"));
+        list.add(new Transaction_Model("Pengeluaran", "Jajan","Charish","10000"));
+        list.add(new Transaction_Model("Pengeluaran", "Makan","Charish","50000"));
+        list.add(new Transaction_Model("Pengeluaran", "Bensin","Charish","70000"));
+        list.add(new Transaction_Model("Pengeluaran", "Nonton","Charish","100000"));
     }
 }

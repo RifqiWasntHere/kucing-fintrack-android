@@ -2,7 +2,11 @@ package com.example.kupengfinance.API;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface RetrofitInterface {
 
@@ -17,5 +21,8 @@ public interface RetrofitInterface {
 
     @POST("card/add/")
     Call<Account_Model_Card> addCard(@Body Account_Model_Card account_model_card);
+
+    @GET("cash/get/")
+    Call<Account_Model_Card> getCard(@Query("userId") int userId);
 
 }

@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kupengfinance.API.Account_Model_Card;
+import com.example.kupengfinance.API.Account_Model_Card_Get;
 import com.example.kupengfinance.API.Account_Model_Cash;
+import com.example.kupengfinance.API.Login_model;
 import com.example.kupengfinance.Activity.AccountActivity;
 import com.example.kupengfinance.Adapter.RecyclerViewAdapterAccountCard;
 import com.example.kupengfinance.Adapter.RecyclerViewAdapterAccountCash;
@@ -23,10 +26,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.Response;
+import com.example.kupengfinance.API.RetrofitInterface;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class AccountFragment extends Fragment {
 
     private ArrayList<Account_Model_Card> listCard = new ArrayList<>();
     private ArrayList<Account_Model_Cash> listCash = new ArrayList<>();
+    private ArrayList<Account_Model_Card_Get> getCard = new ArrayList<>();
     FloatingActionButton addaccount;
 
     public AccountFragment() {
@@ -74,8 +85,34 @@ public class AccountFragment extends Fragment {
     }
 
     private void buildListData(){
-        listCard.add(new Account_Model_Card("48", "Mandiri","100000"));
-        listCard.add(new Account_Model_Card("48", "Bca","100000"));
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+        //change paramater in Account_Model_Card_Get
+//        Account_Model_Card_Get getCard = new Account_Model_Card_Get(48);
+
+        Call<Account_Model_Card> call = retrofitInterface.getCard(48);
+        call.enqueue(new Callback<Account_Model_Card>() {
+            @Override
+            public void onResponse(Call<Account_Model_Card> call, Response<Account_Model_Card> response) {
+                if(response.isSuccessful()){
+                    response.body();
+                    int userId = response.body().getUserId();
+                    String cardName = response.body().getCardName();
+                    float cardBalance = response.body().getCardBalance();
+                    Log.d("Ngambil", cardName);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account_Model_Card> call, Throwable t) {
+
+            }
+        });
     }
 
     private void initRecycleView2(View view) {
@@ -88,7 +125,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void buildListData2(){
-        listCash.add(new Account_Model_Cash("48", "Jajan","100000"));
-        listCash.add(new Account_Model_Cash("48", "Jajan","100000"));
+        listCash.add(new Account_Model_Cash(48, "Jajan",100000));
+        listCash.add(new Account_Model_Cash(48, "Jajan",100000));
     }
 }

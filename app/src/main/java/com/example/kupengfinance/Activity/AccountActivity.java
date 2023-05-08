@@ -42,7 +42,7 @@ public class AccountActivity extends AppCompatActivity {
     ArrayList<Spinner_Model> spinner_models;
     SpinnerAdapter adapter;
     String val;
-    String userId = "48";
+    int userId = 48;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,11 @@ public class AccountActivity extends AppCompatActivity {
                     return;
                 }
                 if(val.equals("Cash")) {
-                    handleAccountCash(userId, accnameEdt.getText().toString(), accamountEdt.getText().toString());
+                    handleAccountCash(userId, accnameEdt.getText().toString(), Integer.parseInt(accamountEdt.getText().toString()));
                     return;
                 }
                 if(val.equals("Card")) {
-                    handleAccountCard(userId, accnameEdt.getText().toString(), accamountEdt.getText().toString());
+                    handleAccountCard(userId, accnameEdt.getText().toString(), Float.parseFloat(accamountEdt.getText().toString()));
                     return;
                 }
             }
@@ -90,7 +90,7 @@ public class AccountActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void handleAccountCash(String userId, String cashName, String cashBalance) {
+    private void handleAccountCash(int userId, String cashName, int cashBalance) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -99,9 +99,7 @@ public class AccountActivity extends AppCompatActivity {
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
         Account_Model_Cash account_model_cash = new Account_Model_Cash(userId, cashName, cashBalance);
-//        Log.i(username.toString(),"Username");
-//        Log.i(email.toString(),"Email");
-//        Log.i(password.toString(),"Password");
+
         Call<Account_Model_Cash> call = retrofitInterface.addCash(account_model_cash);
 
         call.enqueue(new Callback<Account_Model_Cash>() {
@@ -137,7 +135,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
     }
-    private void handleAccountCard(String userId, String cardName, String cardBalance) {
+    private void handleAccountCard(int userId, String cardName, float cardBalance) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())

@@ -33,7 +33,7 @@ public class RecyclerViewAdapterAccountCash extends RecyclerView.Adapter<Recycle
 
         Account_Model_Cash account_model_cash = list.get(position);
         holder.categoryTxt.setText(account_model_cash.cashName);
-        holder.cashTxt.setText(account_model_cash.cashBalance);
+        holder.cashTxt.setText((int)account_model_cash.cashBalance);
     }
 
     @Override
@@ -51,7 +51,5 @@ public class RecyclerViewAdapterAccountCash extends RecyclerView.Adapter<Recycle
         }
     }
 
-    public interface itemClickListerner{
-        public void onItemClick (Transaction_Model transaction_model);
-    }
+
 }
