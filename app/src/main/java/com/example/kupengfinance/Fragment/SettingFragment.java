@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.kupengfinance.Activity.ChangePasswordActivity;
 import com.example.kupengfinance.Activity.MainActivity;
 import com.example.kupengfinance.Activity.PreviewLoginActivity;
+import com.example.kupengfinance.Activity.SignInActivity;
 import com.example.kupengfinance.R;
 
 import org.w3c.dom.Text;
@@ -70,7 +71,7 @@ public class SettingFragment extends DialogFragment {
 
     public void showDialog() {
         final AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-        builder.setTitle("Logout");
+        builder.setTitle("Log Out");
 
         builder.setMessage("Do you want to log out from the app?");
 
@@ -80,7 +81,7 @@ public class SettingFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getActivity(), "You has been logout", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), PreviewLoginActivity.class);
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
                 startActivity(intent);
             }
         });

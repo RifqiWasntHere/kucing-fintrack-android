@@ -49,7 +49,7 @@
         android:id="@+id/logout"
         android:layout_width="214dp"
         android:layout_height="32dp"
-        android:text="Logout"
+        android:text="Log Out"
         android:textSize="23sp"
         android:textStyle="bold"
         android:onClick="showAlertDialog"
