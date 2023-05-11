@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.097">
+        app:layout_constraintVertical_bias="0.151">
 
         <TextView
             android:id="@+id/firstFragment"
@@ -25,7 +25,8 @@
             android:text="Cash"
             android:textColor="#43a047"
             android:textSize="20sp"
-            android:textStyle="italic|bold" />
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/viewCashAcc"
@@ -52,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771">
+        app:layout_constraintVertical_bias="0.825">
 
         <TextView
             android:id="@+id/secondFragment"
@@ -61,7 +62,8 @@
             android:text="Card"
             android:textColor="#43a047"
             android:textSize="20sp"
-            android:textStyle="italic|bold" />
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/viewCardAcc"

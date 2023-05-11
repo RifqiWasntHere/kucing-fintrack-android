@@ -30,7 +30,6 @@ public class SignInActivity extends AppCompatActivity {
     ImageView backfsignin;
     EditText emailEdt, passwordEdt;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

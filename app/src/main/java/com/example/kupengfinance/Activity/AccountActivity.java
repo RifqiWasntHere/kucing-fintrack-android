@@ -75,7 +75,7 @@ public class AccountActivity extends AppCompatActivity {
                     return;
                 }
                 if(val.equals("Card")) {
-                    handleAccountCard(userId, accnameEdt.getText().toString(), Float.parseFloat(accamountEdt.getText().toString()));
+                    handleAccountCard(userId, accnameEdt.getText().toString(), Integer.parseInt(accamountEdt.getText().toString()));
                     return;
                 }
             }
@@ -90,7 +90,7 @@ public class AccountActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void handleAccountCash(int userId, String cashName, int cashBalance) {
+    private void handleAccountCash(int userId, String cashName, float cashBalance) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())

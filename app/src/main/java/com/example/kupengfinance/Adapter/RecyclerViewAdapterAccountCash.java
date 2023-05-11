@@ -7,19 +7,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.kupengfinance.API.Account_Model_Card;
 import com.example.kupengfinance.API.Account_Model_Cash;
 import com.example.kupengfinance.API.Transaction_Model;
+import com.example.kupengfinance.Fragment.AccountFragment;
 import com.example.kupengfinance.R;
 
 import java.util.List;
 
 public class RecyclerViewAdapterAccountCash extends RecyclerView.Adapter<RecyclerViewAdapterAccountCash.MyViewHolder>  {
-    private List<Account_Model_Cash> list;
+    private List<Account_Model_Cash> cashNamelist;
+    public List<Account_Model_Cash> cashBalanceList;
     Context context;
 
-    public RecyclerViewAdapterAccountCash(List<Account_Model_Cash> list){
-        this.list = list;
+    AccountFragment accountMenu;
+    public RecyclerViewAdapterAccountCash(AccountFragment accountMenu){
+        this.accountMenu = accountMenu;
     }
+
     @NonNull
     @Override
     public RecyclerViewAdapterAccountCash.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,14 +37,20 @@ public class RecyclerViewAdapterAccountCash extends RecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapterAccountCash.MyViewHolder holder, int position) {
 
-        Account_Model_Cash account_model_cash = list.get(position);
-        holder.categoryTxt.setText(account_model_cash.cashName);
-        holder.cashTxt.setText((int)account_model_cash.cashBalance);
+        Account_Model_Cash account_model_cash_name = cashNamelist.get(position);
+        Account_Model_Cash account_model_cash_balance = cashBalanceList.get(position);
+        holder.categoryTxt.setText(account_model_cash_name.cashName);
+        holder.cashTxt.setText("Rp. " + String.valueOf(account_model_cash_balance.getCashBalance()));
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return cashBalanceList.size();
+    }
+
+    public void setCashList(List<Account_Model_Cash> cashNamelist,List<Account_Model_Cash>  cashBalanceList){
+        this.cashNamelist =cashNamelist;
+        this.cashBalanceList = cashBalanceList;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

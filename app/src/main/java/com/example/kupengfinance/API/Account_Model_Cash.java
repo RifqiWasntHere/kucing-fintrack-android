@@ -21,6 +21,12 @@ public class Account_Model_Cash {
         this.cashName = cashName;
         this.cashBalance = cashBalance;
     }
+    public Account_Model_Cash(int userId) {
+        this.userId = userId;
+    }
+    public Account_Model_Cash(){
+
+    }
 
     public int getUserId() {
         return userId;

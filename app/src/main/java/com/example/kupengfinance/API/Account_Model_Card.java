@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 public class Account_Model_Card {
 
     @SerializedName("userId")
-    @Expose
     public  int userId;
     @SerializedName("cardName")
     @Expose
@@ -19,6 +18,12 @@ public class Account_Model_Card {
         this.userId = userId;
         this.cardName = cardName;
         this.cardBalance = cardBalance;
+    }
+    public Account_Model_Card(int userId) {
+        this.userId = userId;
+    }
+    public Account_Model_Card(){
+
     }
 
     public int getUserId() {

@@ -32,15 +32,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
-            android:text="Amount"
+            android:paddingRight="8dp"
+            android:text="Category"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/tamount"
+            android:id="@+id/textCategory"
             android:layout_width="270dp"
             android:layout_height="35dp"
+            android:paddingLeft="16dp"
             android:background="@drawable/custom_edittext" />
 
     </LinearLayout>
@@ -59,16 +60,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="8dp"
-            android:text="Category"
+            android:paddingRight="40dp"
+            android:text="Type"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <Spinner
+            android:id="@+id/spin"
             android:layout_width="270dp"
             android:layout_height="35dp"
-            android:id="@+id/spin"
-            android:entries="@array/category"
+            android:entries="@array/categoryTrans"
             android:textAlignment="center"
             android:background="@drawable/custom_edittext"/>
 
@@ -87,15 +88,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="14dp"
-            android:text="Account"
+            android:paddingRight="16dp"
+            android:text="Amount"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/taccount"
+            android:id="@+id/amountText"
             android:layout_width="270dp"
             android:layout_height="35dp"
+            android:paddingLeft="16dp"
+            android:inputType= "numberDecimal"
             android:background="@drawable/custom_edittext" />
 
     </LinearLayout>
@@ -119,15 +122,16 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/tnote"
+            android:id="@+id/noteText"
             android:layout_width="270dp"
             android:layout_height="35dp"
+            android:paddingLeft="16dp"
             android:background="@drawable/custom_edittext" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnConfirm"
         android:layout_width="141dp"
         android:layout_height="39dp"
         android:layout_marginBottom="288dp"
