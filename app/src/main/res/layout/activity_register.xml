@@ -44,6 +44,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    <EditText
+        android:id="@+id/Remail"
+        android:layout_width="363dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_edittext"
+        android:hint="Email"
+        android:paddingLeft="20dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Rusername" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Lpassword"
@@ -62,23 +74,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/custom_edittext"
-            android:hint="Password"
+            android:hint="Pass"
             android:inputType="textPassword"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/Remail"
-        android:layout_width="363dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/custom_edittext"
-        android:hint="Email"
-        android:paddingLeft="20dp"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rusername" />
+
 
 
     <Button
