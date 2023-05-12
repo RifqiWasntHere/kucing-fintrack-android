@@ -66,12 +66,14 @@
             android:text="@string/Account"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/textCategory"
+        <Spinner
+            android:id="@+id/spinnerAcc"
             android:layout_width="270dp"
             android:layout_height="35dp"
             android:background="@drawable/custom_edittext"
-            android:paddingLeft="16dp" />
+            android:paddingLeft="16dp"
+            android:textAlignment="center"
+            android:entries="@array/account"/>
 
     </LinearLayout>
 
@@ -91,12 +93,12 @@
             android:textSize="18dp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/textCategoryAcc"
+        <Spinner
+            android:id="@+id/spinnerAcc2"
             android:layout_width="270dp"
             android:layout_height="35dp"
             android:paddingLeft="16dp"
-            android:background="@drawable/custom_edittext" />
+            android:background="@drawable/custom_edittext"/>
 
     </LinearLayout>
 

@@ -20,11 +20,17 @@
     <string name="Text_forget_password">Enter the email address you used to register, and we will send you an email to recover your password.</string>
     <string-array name="categoryTrans">spinTrans
         <item>Select One</item>
-        <item>outgoing</item>
+        <item>outcome</item>
         <item>income</item>
     </string-array>
 
     <string-array name="category">spin
+        <item>Select One</item>
+        <item>Card</item>
+        <item>Cash</item>
+    </string-array>
+
+    <string-array name="account">spin
         <item>Select One</item>
         <item>Card</item>
         <item>Cash</item>

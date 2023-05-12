@@ -42,6 +42,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         sharedPreferences = getSharedPreferences("USERID", Context.MODE_PRIVATE);
 
+
         emailEdt = (EditText) findViewById(R.id.email);
         passwordEdt = (EditText) findViewById(R.id.pass);
 
@@ -82,6 +83,11 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Toast.makeText(this, "Please Sign In First", Toast.LENGTH_SHORT).show();
     }
 
     private void handleLogin(String email, String pass) {

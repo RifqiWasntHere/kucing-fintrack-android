@@ -46,7 +46,7 @@ public class RecyclerViewAdapterTransaction extends RecyclerView.Adapter<Recycle
         Transaction_Model transaction_model_type = transTypeList.get(position);
         Transaction_Model transaction_model_amount = transAmountList.get(position);
         Transaction_Model transaction_model_note = transNoteList.get(position);
-        holder.categoryTxt.setText(String.valueOf(transaction_model_cate.cateId));
+        holder.categoryTxt.setText(String.valueOf(transaction_model_cate.category));
         holder.typeTxt.setText(transaction_model_type.transType);
         holder.amountTxt.setText("Rp. " + String.valueOf(transaction_model_amount.getTransAmount()));
         holder.noteTxt.setText(transaction_model_note.transNote);

@@ -10,6 +10,11 @@
         android:title="Account"
         android:icon="@drawable/ic_account_foreground"/>
     <item
+        android:id="@+id/stats"
+        android:title="Statistic"
+        android:icon="@drawable/ic_statistic_launcher_foreground"/>
+
+    <item
         android:id="@+id/setting"
         android:title="Setting"
         android:icon="@drawable/ic_setting_foreground"/>

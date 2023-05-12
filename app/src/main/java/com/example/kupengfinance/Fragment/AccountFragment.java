@@ -172,7 +172,6 @@ public class AccountFragment extends Fragment {
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
                 recyclerView.setLayoutManager(layoutManager);
-                //        RecyclerViewAdapterAccountCard adapter = new RecyclerViewAdapterAccountCard(listCard);
                 RecyclerViewAdapterAccountCash adapter = new RecyclerViewAdapterAccountCash(AccountFragment.this);
                 recyclerView.setAdapter(adapter);
                 adapter.setCashList(cashNameList,cashBalanceList);

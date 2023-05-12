@@ -80,7 +80,6 @@ public class JanuaryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         buildListDataJanuary(view);
-//        initRecycleView(view);
     }
 
     private void buildListDataJanuary(View view){
@@ -97,48 +96,53 @@ public class JanuaryFragment extends Fragment {
         call.enqueue(new Callback<List<Transaction_Model>>() {
             @Override
             public void onResponse(Call<List<Transaction_Model>> call, Response<List<Transaction_Model>> response) {
+
                 List<Transaction_Model> myTrans = response.body();
-                List<Transaction_Model> cateId = new ArrayList<Transaction_Model>();
+                List<Transaction_Model> transCate = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transType = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transAmount = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transNote = new ArrayList<Transaction_Model>();
 
-                int[] category = new int[myTrans.size()];
-                String[] type = new String[myTrans.size()];
-                float[] amount = new float[myTrans.size()];
-                String[] note = new String[myTrans.size()];
-                for (int i = 0; i < myTrans.size(); i++) {
+                if (myTrans != null) {
+                    int[] category = new int[myTrans.size()];
+                    String[] type = new String[myTrans.size()];
+                    float[] amount = new float[myTrans.size()];
+                    String[] note = new String[myTrans.size()];
+                    for (int i = 0; i < myTrans.size(); i++) {
 
-                    Transaction_Model transaction_model_cate = new Transaction_Model();
-                    Transaction_Model transaction_model_type = new Transaction_Model();
-                    Transaction_Model transaction_model_amount = new Transaction_Model();
-                    Transaction_Model transaction_model_note = new Transaction_Model();
+                        Transaction_Model transaction_model_cate = new Transaction_Model();
+                        Transaction_Model transaction_model_type = new Transaction_Model();
+                        Transaction_Model transaction_model_amount = new Transaction_Model();
+                        Transaction_Model transaction_model_note = new Transaction_Model();
 
-                    category[i] = myTrans.get(i).getCateId();
-                    transaction_model_cate.setCateId(category[i]);
+                        category[i] = myTrans.get(i).getCategory();
+                        transaction_model_cate.setCategory(category[i]);
 
-                    type[i] = myTrans.get(i).getTransType();
-                    transaction_model_type.setTransType(type[i]);
+                        type[i] = myTrans.get(i).getTransType();
+                        transaction_model_type.setTransType(type[i]);
 
-                    amount[i] = myTrans.get(i).getTransAmount();
-                    transaction_model_amount.setTransAmount(amount[i]);
+                        amount[i] = myTrans.get(i).getTransAmount();
+                        transaction_model_amount.setTransAmount(amount[i]);
 
-                    note[i] = myTrans.get(i).getTransNote();
-                    transaction_model_note.setTransNote(note[i]);
+                        note[i] = myTrans.get(i).getTransNote();
+                        transaction_model_note.setTransNote(note[i]);
 
-                    cateId.add(transaction_model_cate);
-                    transType.add(transaction_model_type);
-                    transAmount.add(transaction_model_amount);
-                    transNote.add(transaction_model_note);
+                        transCate.add(transaction_model_cate);
+                        transType.add(transaction_model_type);
+                        transAmount.add(transaction_model_amount);
+                        transNote.add(transaction_model_note);
+                    }
+                    RecyclerView recyclerView = view.findViewById(R.id.viewJanuary);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+                    recyclerView.setLayoutManager(layoutManager);
+                    RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction(JanuaryFragment.this);
+                    recyclerView.setAdapter(adapter);
+                    adapter.setTransList(transCate, transType, transAmount, transNote);
                 }
-                RecyclerView recyclerView = view.findViewById(R.id.viewJanuary);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-
-                recyclerView.setLayoutManager(layoutManager);
-                //        RecyclerViewAdapterAccountCard adapter = new RecyclerViewAdapterAccountCard(listCard);
-                RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction (JanuaryFragment.this);
-                recyclerView.setAdapter(adapter);
-                adapter.setTransList(cateId,transType,transAmount,transNote);
+                else {
+                    return;
+                }
 
             }
 

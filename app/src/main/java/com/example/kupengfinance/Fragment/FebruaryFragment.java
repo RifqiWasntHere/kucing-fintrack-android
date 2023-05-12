@@ -93,41 +93,47 @@ public class FebruaryFragment extends Fragment {
                 List<Transaction_Model> transAmount = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transNote = new ArrayList<Transaction_Model>();
 
+                if (myTrans != null) {
                 int[] category = new int[myTrans.size()];
                 String[] type = new String[myTrans.size()];
                 float[] amount = new float[myTrans.size()];
                 String[] note = new String[myTrans.size()];
                 for (int i = 0; i < myTrans.size(); i++) {
 
-                    Transaction_Model transaction_model_cate = new Transaction_Model();
-                    Transaction_Model transaction_model_type = new Transaction_Model();
-                    Transaction_Model transaction_model_amount = new Transaction_Model();
-                    Transaction_Model transaction_model_note = new Transaction_Model();
 
-                    category[i] = myTrans.get(i).getCateId();
-                    transaction_model_cate.setCateId(category[i]);
+                        Transaction_Model transaction_model_cate = new Transaction_Model();
+                        Transaction_Model transaction_model_type = new Transaction_Model();
+                        Transaction_Model transaction_model_amount = new Transaction_Model();
+                        Transaction_Model transaction_model_note = new Transaction_Model();
 
-                    type[i] = myTrans.get(i).getTransType();
-                    transaction_model_type.setTransType(type[i]);
+                        category[i] = myTrans.get(i).getCategory();
+                        transaction_model_cate.setCategory(category[i]);
 
-                    amount[i] = myTrans.get(i).getTransAmount();
-                    transaction_model_amount.setTransAmount(amount[i]);
+                        type[i] = myTrans.get(i).getTransType();
+                        transaction_model_type.setTransType(type[i]);
 
-                    note[i] = myTrans.get(i).getTransNote();
-                    transaction_model_note.setTransNote(note[i]);
+                        amount[i] = myTrans.get(i).getTransAmount();
+                        transaction_model_amount.setTransAmount(amount[i]);
 
-                    cateId.add(transaction_model_cate);
-                    transType.add(transaction_model_type);
-                    transAmount.add(transaction_model_amount);
-                    transNote.add(transaction_model_note);
+                        note[i] = myTrans.get(i).getTransNote();
+                        transaction_model_note.setTransNote(note[i]);
+
+                        cateId.add(transaction_model_cate);
+                        transType.add(transaction_model_type);
+                        transAmount.add(transaction_model_amount);
+                        transNote.add(transaction_model_note);
+                    }
+                    RecyclerView recyclerView = view.findViewById(R.id.viewFebruary);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+                    recyclerView.setLayoutManager(layoutManager);
+                    RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction(FebruaryFragment.this);
+                    recyclerView.setAdapter(adapter);
+                    adapter.setTransList(cateId, transType, transAmount, transNote);
                 }
-                RecyclerView recyclerView = view.findViewById(R.id.viewFebruary);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-
-                recyclerView.setLayoutManager(layoutManager);
-                RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction (FebruaryFragment.this);
-                recyclerView.setAdapter(adapter);
-                adapter.setTransList(cateId,transType,transAmount,transNote);
+               else {
+                    return;
+                }
 
             }
 

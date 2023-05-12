@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.kupengfinance.Fragment.AccountFragment;
 import com.example.kupengfinance.Fragment.HomeFragment;
 import com.example.kupengfinance.Fragment.SettingFragment;
+import com.example.kupengfinance.Fragment.StatisticFragment;
 import com.example.kupengfinance.Fragment.TransactionFragment;
 import com.example.kupengfinance.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,7 +31,9 @@ public class MainActivity extends AppCompatActivity
     }
     TransactionFragment transactionFragment = new TransactionFragment();
     AccountFragment accountFragment = new AccountFragment();
+    StatisticFragment statisticFragment = new StatisticFragment();
     SettingFragment settingFragment = new SettingFragment();
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -46,6 +49,13 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.flFragment, accountFragment)
+                        .commit();
+                return true;
+
+            case R.id.stats:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.flFragment, statisticFragment)
                         .commit();
                 return true;
 

@@ -1,5 +1,7 @@
 package com.example.kupengfinance.API;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,12 +9,9 @@ public class Transaction_Model {
 
     @SerializedName("userId")
     public int userId;
-    @SerializedName("transAccount")
+    @SerializedName("category")
     @Expose
-    public int transAccount;
-    @SerializedName("cateId")
-    @Expose
-    public int cateId;
+    public int category;
     @SerializedName("transType")
     @Expose
     public String transType;
@@ -28,11 +27,19 @@ public class Transaction_Model {
     @SerializedName("year")
     @Expose
     public int year;
+    @SerializedName("transCash")
+    @Expose
+    public int transCash;
+    @SerializedName("transCard")
+    @Expose
+    public @Nullable  Integer transCard;
 
-    public Transaction_Model(int userId, int transAccount, int cateId, String transType, float transAmount, String transNote) {
+    //need to be fixed
+    public Transaction_Model(int userId, int transCash, @Nullable Integer transCard, int category, String transType, float transAmount, String transNote) {
         this.userId = userId;
-        this.transAccount = transAccount;
-        this.cateId = cateId;
+        this.transCash = transCash;
+        this.transCard = transCard;
+        this.category = category;
         this.transType = transType;
         this.transAmount = transAmount;
         this.transNote = transNote;
@@ -56,20 +63,28 @@ public class Transaction_Model {
         this.userId = userId;
     }
 
-    public int getTransAccount() {
-        return transAccount;
+    public int getTransCash() {
+        return transCash;
     }
 
-    public void setTransAccount(int transAccount) {
-        this.transAccount = transAccount;
+    public void setTransCash(int transCash) {
+        this.transCash = transCash;
     }
 
-    public int getCateId() {
-        return cateId;
+    public int getTransCard() {
+        return transCard;
     }
 
-    public void setCateId(int cateId) {
-        this.cateId = cateId;
+    public void setTransCard(int transCard) {
+        this.transCard = transCard;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int cateId) {
+        this.category = category;
     }
 
     public String getTransType() {

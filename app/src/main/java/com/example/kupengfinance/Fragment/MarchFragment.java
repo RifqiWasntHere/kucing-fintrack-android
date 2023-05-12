@@ -101,6 +101,7 @@ public class MarchFragment extends Fragment {
                 List<Transaction_Model> transAmount = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transNote = new ArrayList<Transaction_Model>();
 
+                if (myTrans != null) {
                 int[] category = new int[myTrans.size()];
                 String[] type = new String[myTrans.size()];
                 float[] amount = new float[myTrans.size()];
@@ -112,8 +113,8 @@ public class MarchFragment extends Fragment {
                     Transaction_Model transaction_model_amount = new Transaction_Model();
                     Transaction_Model transaction_model_note = new Transaction_Model();
 
-                    category[i] = myTrans.get(i).getCateId();
-                    transaction_model_cate.setCateId(category[i]);
+                    category[i] = myTrans.get(i).getCategory();
+                    transaction_model_cate.setCategory(category[i]);
 
                     type[i] = myTrans.get(i).getTransType();
                     transaction_model_type.setTransType(type[i]);
@@ -137,6 +138,10 @@ public class MarchFragment extends Fragment {
                 RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction (MarchFragment.this);
                 recyclerView.setAdapter(adapter);
                 adapter.setTransList(cateId,transType,transAmount,transNote);
+                }
+                else {
+                    return;
+                }
 
             }
 

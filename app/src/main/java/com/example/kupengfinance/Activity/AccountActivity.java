@@ -2,7 +2,9 @@ package com.example.kupengfinance.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,12 +44,15 @@ public class AccountActivity extends AppCompatActivity {
     ArrayList<Spinner_Model> spinner_models;
     SpinnerAdapter adapter;
     String val;
-    int userId = 48;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        sharedPreferences = getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
 
         accnameEdt= (EditText) findViewById(R.id.accname);
         accamountEdt = (EditText) findViewById(R.id.accamount);

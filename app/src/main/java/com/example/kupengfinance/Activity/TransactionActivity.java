@@ -1,8 +1,11 @@
 package com.example.kupengfinance.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,14 +30,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TransactionActivity extends AppCompatActivity {
 
     Spinner spinner;
+    Spinner spinnerAcc;
+    Spinner spinnerAcc2;
     EditText cateEdt;
     EditText amountEdt;
     EditText noteEdt;
     Button confirm;
-    String val;
-    int userId = 48;
-    int transAccount = 1;
-
+    String val, val1;
+    Integer transCard = null;
+    SharedPreferences sharedPreferences;
 
 
     ImageView canceltransaction;
@@ -43,10 +47,15 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
 
+        sharedPreferences = getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+
 
         spinner = (Spinner)findViewById(R.id.spin) ;
-        cateEdt = (EditText)findViewById(R.id.textCategory);
+        spinnerAcc = (Spinner)findViewById(R.id.spinnerAcc);
+        spinnerAcc2 = (Spinner)findViewById(R.id.spinnerAcc2);
         amountEdt = (EditText)findViewById(R.id.amountText);
+        cateEdt = (EditText)findViewById(R.id.cateText);
         noteEdt = (EditText)findViewById(R.id.noteText);
 
 
@@ -64,16 +73,17 @@ public class TransactionActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (val.equals("Select One") || cateEdt.getText().toString().equals("") || amountEdt.getText().toString().equals("") || noteEdt.getText().toString().equals("") ){
+                if (val.equals("Select One") || val1.equals("Select One") ||cateEdt.getText().toString().equals("") || amountEdt.getText().toString().equals("") || noteEdt.getText().toString().equals("") ){
                     Toast.makeText(TransactionActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(val.equals("income")){
-                    handleTransactionIncome(userId, transAccount, Integer.parseInt(cateEdt.getText().toString()), "income", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
+                    handleTransactionIncome(userId,6,  null,  Integer.parseInt(cateEdt.getText().toString()), "income", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
+
                     return;
                 }
                 if(val.equals("outcome")){
-                    handleTransactionOutcome(userId, transAccount, Integer.parseInt(cateEdt.getText().toString()), "outgoing", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
+                    handleTransactionOutcome(userId, 6, null, Integer.parseInt(cateEdt.getText().toString()), "outcome", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
                     return;
                 }
             }
@@ -87,8 +97,19 @@ public class TransactionActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+        spinnerAcc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                val1 = spinnerAcc.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
-    private void handleTransactionIncome(int userId, int transAccount, int cateId, String transType, float transAmount, String transNote) {
+    private void handleTransactionIncome(int userId, int transCash, @Nullable Integer transCard, int cateId, String transType, float transAmount, String transNote) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -96,7 +117,7 @@ public class TransactionActivity extends AppCompatActivity {
         // below line is to create an instance for our retrofit api class.
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
-        Transaction_Model transaction_model = new Transaction_Model(userId, transAccount, cateId, transType, transAmount, transNote);
+        Transaction_Model transaction_model = new Transaction_Model(userId, transCash, transCard, cateId, transType, transAmount, transNote);
 
         Call<Transaction_Model> call = retrofitInterface.addTrans(transaction_model);
 
@@ -132,7 +153,7 @@ public class TransactionActivity extends AppCompatActivity {
             }
         });
     }
-    private void handleTransactionOutcome(int userId, int transAccount, int cateId, String transType, float transAmount, String transNote) {
+    private void handleTransactionOutcome(int userId, int transCash,  @Nullable Integer transCard, int cateId, String transType, float transAmount, String transNote) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -140,7 +161,7 @@ public class TransactionActivity extends AppCompatActivity {
         // below line is to create an instance for our retrofit api class.
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
-        Transaction_Model transaction_model = new Transaction_Model(userId, transAccount, cateId, transType, transAmount, transNote);
+        Transaction_Model transaction_model = new Transaction_Model(userId, transCash, transCard, cateId, transType, transAmount, transNote);
 
         Call<Transaction_Model> call = retrofitInterface.addTrans(transaction_model);
 
