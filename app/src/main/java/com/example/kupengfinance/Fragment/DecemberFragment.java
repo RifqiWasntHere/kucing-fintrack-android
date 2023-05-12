@@ -1,66 +1,151 @@
 package com.example.kupengfinance.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.kupengfinance.API.RetrofitInterface;
+import com.example.kupengfinance.API.Transaction_Model;
+import com.example.kupengfinance.Activity.TransactionActivity;
+import com.example.kupengfinance.Adapter.RecyclerViewAdapterTransaction;
 import com.example.kupengfinance.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DecemberFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
 public class DecemberFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    int month = 11;
+    int year = 2023;
+    SharedPreferences sharedPreferences;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    private ArrayList<Transaction_Model> list = new ArrayList<>();
+
+    FloatingActionButton totrans;
 
     public DecemberFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DesemberFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DecemberFragment newInstance(String param1, String param2) {
-        DecemberFragment fragment = new DecemberFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static DecemberFragment getInstance() {
+        return new DecemberFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_desember, container, false);
+        View view = inflater.inflate(R.layout.fragment_december, container, false);
+        totrans = (FloatingActionButton) view.findViewById(R.id.ttotrans);
+
+        totrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TransactionActivity.class);
+                startActivity(intent);
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        buildListDataDecember(view);
+//        initRecycleView(view);
+    }
+
+    private void buildListDataDecember(View view) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+        sharedPreferences = getActivity().getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+        Transaction_Model getTransa = new Transaction_Model(userId, month, year);
+        Call<List<Transaction_Model>> call = retrofitInterface.getTrans(getTransa);
+        call.enqueue(new Callback<List<Transaction_Model>>() {
+            @Override
+            public void onResponse(Call<List<Transaction_Model>> call, Response<List<Transaction_Model>> response) {
+                List<Transaction_Model> myTrans = response.body();
+                List<Transaction_Model> cateId = new ArrayList<Transaction_Model>();
+                List<Transaction_Model> transType = new ArrayList<Transaction_Model>();
+                List<Transaction_Model> transAmount = new ArrayList<Transaction_Model>();
+                List<Transaction_Model> transNote = new ArrayList<Transaction_Model>();
+
+                int[] category = new int[myTrans.size()];
+                String[] type = new String[myTrans.size()];
+                float[] amount = new float[myTrans.size()];
+                String[] note = new String[myTrans.size()];
+                for (int i = 0; i < myTrans.size(); i++) {
+
+                    Transaction_Model transaction_model_cate = new Transaction_Model();
+                    Transaction_Model transaction_model_type = new Transaction_Model();
+                    Transaction_Model transaction_model_amount = new Transaction_Model();
+                    Transaction_Model transaction_model_note = new Transaction_Model();
+
+                    category[i] = myTrans.get(i).getCateId();
+                    transaction_model_cate.setCateId(category[i]);
+
+                    type[i] = myTrans.get(i).getTransType();
+                    transaction_model_type.setTransType(type[i]);
+
+                    amount[i] = myTrans.get(i).getTransAmount();
+                    transaction_model_amount.setTransAmount(amount[i]);
+
+                    note[i] = myTrans.get(i).getTransNote();
+                    transaction_model_note.setTransNote(note[i]);
+
+                    cateId.add(transaction_model_cate);
+                    transType.add(transaction_model_type);
+                    transAmount.add(transaction_model_amount);
+                    transNote.add(transaction_model_note);
+                }
+                RecyclerView recyclerView = view.findViewById(R.id.viewDecember);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+                recyclerView.setLayoutManager(layoutManager);
+                //        RecyclerViewAdapterAccountCard adapter = new RecyclerViewAdapterAccountCard(listCard);
+                RecyclerViewAdapterTransaction adapter = new RecyclerViewAdapterTransaction(DecemberFragment.this);
+                recyclerView.setAdapter(adapter);
+                adapter.setTransList(cateId, transType, transAmount, transNote);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Transaction_Model>> call, Throwable t) {
+                Log.d("Ngambil2", "gagal");
+            }
+        });
+
     }
 }

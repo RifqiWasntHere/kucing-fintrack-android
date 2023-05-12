@@ -1,6 +1,8 @@
 package com.example.kupengfinance.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kupengfinance.API.Account_Model_Card;
-import com.example.kupengfinance.API.Account_Model_Card_Get;
 import com.example.kupengfinance.API.Account_Model_Cash;
-import com.example.kupengfinance.API.Login_model;
 import com.example.kupengfinance.Activity.AccountActivity;
 import com.example.kupengfinance.Adapter.RecyclerViewAdapterAccountCard;
 import com.example.kupengfinance.Adapter.RecyclerViewAdapterAccountCash;
@@ -25,7 +25,6 @@ import com.example.kupengfinance.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,7 +38,8 @@ public class AccountFragment extends Fragment {
 
     private ArrayList<Account_Model_Card> listCard = new ArrayList<>();
     private ArrayList<Account_Model_Cash> listCash = new ArrayList<>();
-    private ArrayList<Account_Model_Card_Get> getCard = new ArrayList<>();
+
+    SharedPreferences sharedPreferences;
     FloatingActionButton addaccount;
 
     public AccountFragment() {
@@ -53,6 +53,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -88,9 +89,12 @@ public class AccountFragment extends Fragment {
                 .build();
 
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
-        //change paramater in Account_Model_Card_Get
-//        Account_Model_Card_Get getCard = new Account_Model_Card_Get(48);
-        Account_Model_Card getuserId = new Account_Model_Card(48);
+
+        //JADIIN CLASS
+        sharedPreferences = getActivity().getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+
+        Account_Model_Card getuserId = new Account_Model_Card(userId);
         Call<List<Account_Model_Card>> call = retrofitInterface.getCard(getuserId);
         call.enqueue(new Callback<List<Account_Model_Card>>() {
             @Override
@@ -140,9 +144,10 @@ public class AccountFragment extends Fragment {
                 .build();
 
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
-        //change paramater in Account_Model_Card_Get
-//        Account_Model_Card_Get getCard = new Account_Model_Card_Get(48);
-        Account_Model_Cash getuserId = new Account_Model_Cash(48);
+        sharedPreferences = getActivity().getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+
+        Account_Model_Cash getuserId = new Account_Model_Cash(userId);
         Call<List<Account_Model_Cash>> call = retrofitInterface.getCash(getuserId);
         call.enqueue(new Callback<List<Account_Model_Cash>>() {
             @Override

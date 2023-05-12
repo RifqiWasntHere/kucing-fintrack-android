@@ -1,6 +1,8 @@
 package com.example.kupengfinance.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,8 +37,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JanuaryFragment extends Fragment {
 
-    int month = 4;
+    int month = 0;
     int year = 2023;
+    SharedPreferences sharedPreferences;
 
 
     private ArrayList<Transaction_Model> list = new ArrayList<>();
@@ -87,9 +90,9 @@ public class JanuaryFragment extends Fragment {
                 .build();
 
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
-        //change paramater in Account_Model_Card_Get
-//        Account_Model_Card_Get getCard = new Account_Model_Card_Get(48);
-        Transaction_Model getTransa = new Transaction_Model(48, month, year);
+        sharedPreferences = getActivity().getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+        Transaction_Model getTransa = new Transaction_Model(userId, month, year);
         Call<List<Transaction_Model>> call = retrofitInterface.getTrans(getTransa);
         call.enqueue(new Callback<List<Transaction_Model>>() {
             @Override

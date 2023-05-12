@@ -1,6 +1,8 @@
 package com.example.kupengfinance.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,10 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FebruaryFragment extends Fragment {
 
-    private ArrayList<Transaction_Model> list = new ArrayList<>();
     FloatingActionButton ttotrans;
     int month = 1;
     int year = 2023;
+    SharedPreferences sharedPreferences;
 
     public FebruaryFragment() {
         // Required empty public constructor
@@ -67,20 +69,20 @@ public class FebruaryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        buildListDataJanuary(view);
+        buildListDataFebruary(view);
 //        initRecycleView(view);
     }
 
-    private void buildListDataJanuary(View view){
+    private void buildListDataFebruary(View view){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
-        //change paramater in Account_Model_Card_Get
-//        Account_Model_Card_Get getCard = new Account_Model_Card_Get(48);
-        Transaction_Model getTransa = new Transaction_Model(48, month, year);
+        sharedPreferences = getActivity().getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+        Transaction_Model getTransa = new Transaction_Model(userId, month, year);
         Call<List<Transaction_Model>> call = retrofitInterface.getTrans(getTransa);
         call.enqueue(new Callback<List<Transaction_Model>>() {
             @Override

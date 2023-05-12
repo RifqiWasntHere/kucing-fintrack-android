@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.transaction);
     }
-    HomeFragment homeFragment = new HomeFragment();
     TransactionFragment transactionFragment = new TransactionFragment();
     AccountFragment accountFragment = new AccountFragment();
     SettingFragment settingFragment = new SettingFragment();
@@ -36,13 +35,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.home:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, homeFragment)
-                        .commit();
-                return true;
-
             case R.id.transaction:
                 getSupportFragmentManager()
                         .beginTransaction()

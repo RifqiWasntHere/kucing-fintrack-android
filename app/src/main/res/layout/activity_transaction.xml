@@ -32,34 +32,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="8dp"
-            android:text="Category"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/textCategory"
-            android:layout_width="270dp"
-            android:layout_height="35dp"
-            android:paddingLeft="16dp"
-            android:background="@drawable/custom_edittext" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="46dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.622"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingRight="40dp"
             android:text="Type"
             android:textSize="18dp"
@@ -69,9 +41,37 @@
             android:id="@+id/spin"
             android:layout_width="270dp"
             android:layout_height="35dp"
+            android:background="@drawable/custom_edittext"
             android:entries="@array/categoryTrans"
-            android:textAlignment="center"
-            android:background="@drawable/custom_edittext"/>
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.267">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:textSize="18dp"
+            android:text="@string/Account"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/textCategory"
+            android:layout_width="270dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_edittext"
+            android:paddingLeft="16dp" />
 
     </LinearLayout>
 
@@ -83,13 +83,38 @@
         app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.373">
+        app:layout_constraintVertical_bias="0.359">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="80dp"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/textCategoryAcc"
+            android:layout_width="270dp"
+            android:layout_height="35dp"
+            android:paddingLeft="16dp"
+            android:background="@drawable/custom_edittext" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.451">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="16dp"
-            android:text="Amount"
+            android:text="@string/Amount"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -97,9 +122,9 @@
             android:id="@+id/amountText"
             android:layout_width="270dp"
             android:layout_height="35dp"
-            android:paddingLeft="16dp"
-            android:inputType= "numberDecimal"
-            android:background="@drawable/custom_edittext" />
+            android:background="@drawable/custom_edittext"
+            android:inputType="numberDecimal"
+            android:paddingLeft="16dp" />
 
     </LinearLayout>
 
@@ -111,13 +136,40 @@
         app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472">
+        app:layout_constraintVertical_bias="0.548">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:text="@string/Category"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cateText"
+            android:layout_width="270dp"
+            android:layout_height="35dp"
+            android:background="@drawable/custom_edittext"
+            android:paddingLeft="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="46dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="42dp"
-            android:text="Note"
+            android:text="@string/Note"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -125,8 +177,8 @@
             android:id="@+id/noteText"
             android:layout_width="270dp"
             android:layout_height="35dp"
-            android:paddingLeft="16dp"
-            android:background="@drawable/custom_edittext" />
+            android:background="@drawable/custom_edittext"
+            android:paddingLeft="16dp" />
 
     </LinearLayout>
 
@@ -134,12 +186,12 @@
         android:id="@+id/btnConfirm"
         android:layout_width="141dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="288dp"
+        android:layout_marginBottom="168dp"
         android:background="@color/silver"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent" />
 
 

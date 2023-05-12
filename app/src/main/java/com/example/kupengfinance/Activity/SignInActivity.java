@@ -2,7 +2,9 @@ package com.example.kupengfinance.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kupengfinance.API.Account_Model_Card;
 import com.example.kupengfinance.API.Login_model;
 import com.example.kupengfinance.API.RetrofitInterface;
 import com.example.kupengfinance.API.Signup_model;
 import com.example.kupengfinance.R;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,11 +34,13 @@ public class SignInActivity extends AppCompatActivity {
     TextView forgetpass;
     ImageView backfsignin;
     EditText emailEdt, passwordEdt;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+        sharedPreferences = getSharedPreferences("USERID", Context.MODE_PRIVATE);
 
         emailEdt = (EditText) findViewById(R.id.email);
         passwordEdt = (EditText) findViewById(R.id.pass);
@@ -94,17 +101,24 @@ public class SignInActivity extends AppCompatActivity {
             public void onResponse(Call<Login_model> call, Response<Login_model> response){
                 if (response.code() == 200) {
                     Toast.makeText(SignInActivity.this, "Signed In Successfuly", Toast.LENGTH_LONG).show();
+                    Login_model tempUserId = response.body();
+                    int userId = tempUserId.getUserId();
+                    Log.i("Ngambil2", String.valueOf(userId));
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("USERID", userId);
+                    editor.apply();
+
                     Intent loginIntent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(loginIntent);
                 } else if (response.code() == 400) {
                     Toast.makeText(SignInActivity.this, "User Not Found", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(SignInActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
+
 
                 // we are getting response from our body
                 // and passing it to our modal class
                 Login_model responseFromAPI = response.body();
-                Log.d("response body", String.valueOf(response.code()));
                 // on below line we are getting our data from modal class
                 // and adding it to our string.
 //                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();

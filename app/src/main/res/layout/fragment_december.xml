@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.MarchFragment">
+    tools:context=".Fragment.DecemberFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/viewMarch"
+        android:id="@+id/viewDecember"
         android:layout_width="422dp"
         android:layout_height="590dp"
         android:layout_marginStart="8dp"

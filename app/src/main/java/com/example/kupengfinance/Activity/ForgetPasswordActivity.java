@@ -32,7 +32,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ForgetPasswordActivity.this, SignInActivity.class);
+                Intent intent = new Intent(ForgetPasswordActivity.this, OTPActivity.class);
                 startActivity(intent);
             }
         });

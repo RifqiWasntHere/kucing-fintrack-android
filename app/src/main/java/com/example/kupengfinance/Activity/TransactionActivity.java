@@ -72,7 +72,7 @@ public class TransactionActivity extends AppCompatActivity {
                     handleTransactionIncome(userId, transAccount, Integer.parseInt(cateEdt.getText().toString()), "income", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
                     return;
                 }
-                if(val.equals("outgoing")){
+                if(val.equals("outcome")){
                     handleTransactionOutcome(userId, transAccount, Integer.parseInt(cateEdt.getText().toString()), "outgoing", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
                     return;
                 }
