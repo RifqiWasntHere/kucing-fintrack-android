@@ -32,7 +32,7 @@ public class Transaction_Model {
     public int transCash;
     @SerializedName("transCard")
     @Expose
-    public @Nullable  Integer transCard;
+    public @Nullable Integer transCard;
 
     //need to be fixed
     public Transaction_Model(int userId, int transCash, @Nullable Integer transCard, int category, String transType, float transAmount, String transNote) {

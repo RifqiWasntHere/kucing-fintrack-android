@@ -41,7 +41,7 @@ public class SpinnerAdapter extends ArrayAdapter<Spinner_Model> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.spinner_list, parent, false);
         }
 
-        TextView textViewName = convertView.findViewById(R.id.text_view);
+        TextView textViewName = convertView.findViewById(R.id.textCash);
         Spinner_Model currentItem = getItem(position);
 
         // It is used the name to the TextView when the

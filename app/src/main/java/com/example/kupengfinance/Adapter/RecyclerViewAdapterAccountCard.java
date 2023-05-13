@@ -18,7 +18,7 @@ import com.example.kupengfinance.R;
 import java.util.List;
 
 public class RecyclerViewAdapterAccountCard extends RecyclerView.Adapter<RecyclerViewAdapterAccountCard.MyViewHolder> {
-    private List<Account_Model_Card> cardNamelist;
+    private List<Account_Model_Card> cardNameList;
     private List<Account_Model_Card>  cardBalanceList;
     Context context;
 
@@ -40,9 +40,9 @@ public class RecyclerViewAdapterAccountCard extends RecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapterAccountCard.MyViewHolder holder, int position) {
 
-        Account_Model_Card account_model_card_name = cardNamelist.get(position);
+        Account_Model_Card account_model_card_name = cardNameList.get(position);
         Account_Model_Card account_model_card_balance = cardBalanceList.get(position);
-        Log.d("Test list", String.valueOf(cardNamelist.size()));
+        Log.d("Test list", String.valueOf(cardNameList.size()));
         holder.categoryTxt.setText(account_model_card_name.getCardName());
         holder.cashTxt.setText("Rp. " + String.valueOf(account_model_card_balance.getCardBalance()));
     }
@@ -53,7 +53,7 @@ public class RecyclerViewAdapterAccountCard extends RecyclerView.Adapter<Recycle
     }
 
     public void setCardList(List<Account_Model_Card> cardNamelist,List<Account_Model_Card>  cardBalanceList){
-        this.cardNamelist =cardNamelist;
+        this.cardNameList =cardNamelist;
         this.cardBalanceList = cardBalanceList;
     }
     class MyViewHolder extends RecyclerView.ViewHolder {

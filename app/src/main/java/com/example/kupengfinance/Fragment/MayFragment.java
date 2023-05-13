@@ -97,6 +97,8 @@ public class MayFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Transaction_Model>> call, Response<List<Transaction_Model>> response) {
                 List<Transaction_Model> myTrans = response.body();
+                Log.d("Isi List", myTrans.get(0).toString() );
+
                 List<Transaction_Model> cateId = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transType = new ArrayList<Transaction_Model>();
                 List<Transaction_Model> transAmount = new ArrayList<Transaction_Model>();

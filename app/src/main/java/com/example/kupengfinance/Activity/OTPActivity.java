@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kupengfinance.API.RetrofitInterface;
+import com.example.kupengfinance.API.ForgetPass_model;
 import com.example.kupengfinance.API.Otp_model;
+import com.example.kupengfinance.API.RetrofitInterface;
 import com.example.kupengfinance.R;
 
 import retrofit2.Call;
@@ -23,35 +25,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OTPActivity extends AppCompatActivity {
 
-    EditText otpEdt;
-    Button btnSubmit;
+    EditText otp;
+    Button submitForget;
     SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-        sharedPreferences = getSharedPreferences("EMAIL", Context.MODE_PRIVATE);
 
-        otpEdt = (EditText)findViewById(R.id.otpText);
-        btnSubmit = (Button)findViewById(R.id.submitForget);
-        sharedPreferences = getSharedPreferences("EMAIL", Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString("EMAIL", null);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        otp = (EditText)findViewById(R.id.otpText);
+        submitForget = (Button)findViewById(R.id.submitForget);
+
+        submitForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(otpEdt.getText().toString().equals("")){
+                if(otp.getText().toString().equals("")){
                     Toast.makeText(OTPActivity.this, "Please Fill The Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
-                    handleOTP(otpEdt.getText().toString(),email);
-
+                    sharedPreferences = getSharedPreferences("EMAIL", Context.MODE_PRIVATE);
+                    String email = sharedPreferences.getString("EMAIL", null);
+                    handleForgetOTP(email, otp.getText().toString());
                 }
             }
         });
     }
-
-    private void handleOTP(String otp, String email){
+    private void handleForgetOTP(String email, String otp){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -67,10 +68,10 @@ public class OTPActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Otp_model> call, Response<Otp_model> response) {
                 if (response.code() == 200){
-                    Intent intent = new Intent(OTPActivity.this, OTPActivity.class);
+                    Intent intent = new Intent(OTPActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (response.code() == 401){
-                    Toast.makeText(OTPActivity.this, "Email not found!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(OTPActivity.this, "OTP is not Authorized", Toast.LENGTH_LONG).show();
                 } else if (response.code() == 400){
                     Toast.makeText(OTPActivity.this, "Action failed", Toast.LENGTH_LONG).show();
                 }

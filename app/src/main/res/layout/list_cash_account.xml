@@ -14,7 +14,7 @@
         android:text="@string/Category">
     </TextView>
     <TextView
-        android:layout_width="130dp"
+        android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
@@ -22,7 +22,7 @@
     </TextView>
     <TextView
         android:id="@+id/textCash"
-        android:layout_width="120dp"
+        android:layout_width="140dp"
         android:layout_height="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"

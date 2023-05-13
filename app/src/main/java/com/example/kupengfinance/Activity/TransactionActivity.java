@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,6 +22,9 @@ import com.example.kupengfinance.API.RetrofitInterface;
 import com.example.kupengfinance.API.Transaction_Model;
 import com.example.kupengfinance.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,14 +34,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TransactionActivity extends AppCompatActivity {
 
     Spinner spinner;
-    Spinner spinnerAcc;
+    Spinner spinnerCash;
     Spinner spinnerAcc2;
     EditText cateEdt;
     EditText amountEdt;
     EditText noteEdt;
     Button confirm;
     String val, val1;
-    Integer transCard = null;
     SharedPreferences sharedPreferences;
 
 
@@ -52,11 +55,12 @@ public class TransactionActivity extends AppCompatActivity {
 
 
         spinner = (Spinner)findViewById(R.id.spin) ;
-        spinnerAcc = (Spinner)findViewById(R.id.spinnerAcc);
+        spinnerCash = (Spinner)findViewById(R.id.spinnerAcc);
         spinnerAcc2 = (Spinner)findViewById(R.id.spinnerAcc2);
         amountEdt = (EditText)findViewById(R.id.amountText);
         cateEdt = (EditText)findViewById(R.id.cateText);
         noteEdt = (EditText)findViewById(R.id.noteText);
+
 
 
         canceltransaction = (ImageView) findViewById(R.id.canceltransaction);
@@ -78,29 +82,46 @@ public class TransactionActivity extends AppCompatActivity {
                     return;
                 }
                 if(val.equals("income")){
-                    handleTransactionIncome(userId,6,  null,  Integer.parseInt(cateEdt.getText().toString()), "income", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
-
+//                    handleTransactionIncome(userId,6,  null,  Integer.parseInt(cateEdt.getText().toString()), "income", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
+                    String transType = "income";
                     return;
                 }
                 if(val.equals("outcome")){
-                    handleTransactionOutcome(userId, 6, null, Integer.parseInt(cateEdt.getText().toString()), "outcome", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
+//                    handleTransactionOutcome(userId, 6, null, Integer.parseInt(cateEdt.getText().toString()), "outcome", Integer.parseInt(amountEdt.getText().toString()),noteEdt.getText().toString());
+                    String transType = "outcome";
                     return;
                 }
             }
         });
+
         spinner.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 val = spinner.getSelectedItem().toString();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        spinnerAcc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerCash.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                val1 = spinnerAcc.getSelectedItem().toString();
+                val1 = spinnerCash.getSelectedItem().toString();
+                if (val.equals("Card")){
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinnerAcc2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
             }
 
             @Override
@@ -110,6 +131,8 @@ public class TransactionActivity extends AppCompatActivity {
         });
     }
     private void handleTransactionIncome(int userId, int transCash, @Nullable Integer transCard, int cateId, String transType, float transAmount, String transNote) {
+        List<String> spinnerCash = new ArrayList<>();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -133,16 +156,6 @@ public class TransactionActivity extends AppCompatActivity {
                 }
                 Toast.makeText(TransactionActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
 
-                // we are getting response from our body
-                // and passing it to our modal class.
-                Transaction_Model responseFromAPI = response.body();
-
-                // on below line we are getting our data from modal class
-                // and adding it to our string.
-//                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();
-
-                // below line we are setting our
-                // string to our text view.
                 Log.i(String.valueOf(response.code()), "ingfo");
 
             }
@@ -176,17 +189,6 @@ public class TransactionActivity extends AppCompatActivity {
                     Toast.makeText(TransactionActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
                 }
                 Toast.makeText(TransactionActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
-
-                // we are getting response from our body
-                // and passing it to our modal class.
-                Transaction_Model responseFromAPI = response.body();
-
-                // on below line we are getting our data from modal class
-                // and adding it to our string.
-//                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();
-
-                // below line we are setting our
-                // string to our text view.
                 Log.i(String.valueOf(response.code()), "ingfo");
 
             }
@@ -196,6 +198,45 @@ public class TransactionActivity extends AppCompatActivity {
                 Toast.makeText(TransactionActivity.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void buildListDataCash(View view){
+        List<String> spinnerListCash = new ArrayList<>();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://kucing-finance-backend-production.up.railway.app/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+        sharedPreferences = getSharedPreferences("USERID", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("USERID", 0);
+
+        Account_Model_Cash getuserId = new Account_Model_Cash(userId);
+        Call<List<Account_Model_Cash>> call = retrofitInterface.getCash(getuserId);
+        call.enqueue(new Callback<List<Account_Model_Cash>>() {
+            @Override
+            public void onResponse(Call<List<Account_Model_Cash>> call, Response<List<Account_Model_Cash>> response) {
+                if (response.isSuccessful()) {
+                    List<Account_Model_Cash> listCash = response.body();
+                    for (Account_Model_Cash account_model_cash : listCash) {
+                        spinnerListCash.add(account_model_cash.getCashName());
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(TransactionActivity.this, android.R.layout.simple_spinner_item, spinnerListCash);
+                    adapter.setDropDownViewResource(R.layout.spinner_list);
+                    spinnerCash.setAdapter(adapter);
+                } else {
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Account_Model_Cash>> call, Throwable t) {
+                Log.d("Ngambil2", "gagal");
+            }
+        });
+
     }
 
 }

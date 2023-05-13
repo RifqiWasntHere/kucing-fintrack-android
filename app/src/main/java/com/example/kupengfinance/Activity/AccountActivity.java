@@ -130,7 +130,6 @@ public class AccountActivity extends AppCompatActivity {
                 // below line we are setting our
                 // string to our text view.
                 Log.i(String.valueOf(response.code()), "ingfo");
-
             }
 
 

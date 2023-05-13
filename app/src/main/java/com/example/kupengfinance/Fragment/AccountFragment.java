@@ -158,13 +158,17 @@ public class AccountFragment extends Fragment {
 
                 float[] cashBalance = new float[myCashAndCardBalance.size()];
                 String[] cashName = new String[myCashAndCardBalance.size()];
+
                 for (int i = 0; i < myCashAndCardBalance.size(); i++) {
                     Account_Model_Cash model_cash_name = new Account_Model_Cash();
                     Account_Model_Cash model_cash_balance = new Account_Model_Cash();
+
                     cashName[i] = myCashAndCardBalance.get(i).getCashName();
                     model_cash_name.setCashName(cashName[i]);
+
                     cashBalance[i] = myCashAndCardBalance.get(i).getCashBalance();
                     model_cash_balance.setCashBalance(cashBalance[i]);
+
                     cashNameList.add(model_cash_name);
                     cashBalanceList.add(model_cash_balance);
                 }

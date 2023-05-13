@@ -10,7 +10,7 @@ public class Account_Model_Cash {
 
     @SerializedName("cashName")
     @Expose
-    public String cashName;
+    public  String cashName;
 
     @SerializedName("cashBalance")
     @Expose

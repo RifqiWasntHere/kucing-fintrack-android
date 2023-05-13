@@ -31,8 +31,10 @@
     </string-array>
 
     <string-array name="account">spin
-        <item>Select One</item>
         <item>Card</item>
+    </string-array>
+
+    <string-array name="account1">spin
         <item>Cash</item>
     </string-array>
 
@@ -43,5 +45,7 @@
     <string name="Amount">Amount</string>
     <string name="Note">Note</string>
     <string name="Cash">Cash</string>
+    <string name="select_option">Select an option</string>
+    <string name="first_spinner_label">First Spinner</string>
 
 </resources>

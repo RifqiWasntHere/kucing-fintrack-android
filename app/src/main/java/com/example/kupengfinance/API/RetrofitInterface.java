@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface RetrofitInterface {
@@ -20,6 +21,9 @@ public interface RetrofitInterface {
 
     @POST("forpassotp/")
     Call<Otp_model> executeForgetOtp(@Body Otp_model otp_model);
+
+    @PATCH("update/")
+    Call<ChangePass_model> excuteChangePass(@Body ChangePass_model changePass_model);
 
     //TRANSACTIONS
     @POST("transactions/get")
