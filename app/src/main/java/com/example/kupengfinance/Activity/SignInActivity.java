@@ -109,7 +109,7 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this, "Signed In Successfuly", Toast.LENGTH_LONG).show();
                     Login_model tempUserId = response.body();
                     int userId = tempUserId.getUserId();
-                    Log.i("Ngambil2", String.valueOf(userId));
+//                    Log.i("Ngambil2", String.valueOf(userId));
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("USERID", userId);
@@ -120,18 +120,6 @@ public class SignInActivity extends AppCompatActivity {
                 } else if (response.code() == 400) {
                     Toast.makeText(SignInActivity.this, "User Not Found", Toast.LENGTH_LONG).show();
                 }
-
-
-                // we are getting response from our body
-                // and passing it to our modal class
-                Login_model responseFromAPI = response.body();
-                // on below line we are getting our data from modal class
-                // and adding it to our string.
-//                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();
-
-                // below line we are setting our
-                // string to our text view.
-                Log.i(String.valueOf(response.code()), "ingfo");
             }
             @Override
             public void onFailure(Call<Login_model> call, Throwable t) {

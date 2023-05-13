@@ -77,13 +77,11 @@ public class RegisterActivity extends AppCompatActivity {
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        // below line is to create an instance for our retrofit api class.
+
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
         Signup_model signUp = new Signup_model(username, email, password);
-//        Log.i(username.toString(),"Username");
-//        Log.i(email.toString(),"Email");
-//        Log.i(password.toString(),"Password");
+
         Call<Signup_model> call = retrofitInterface.createSignUp(signUp);
 
         call.enqueue(new Callback<Signup_model>() {
@@ -97,18 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
                 }
                 Toast.makeText(RegisterActivity.this, "API Reached", Toast.LENGTH_SHORT).show();
-
-                // we are getting response from our body
-                // and passing it to our modal class.
-                Signup_model responseFromAPI = response.body();
-
-                // on below line we are getting our data from modal class
-                // and adding it to our string.
-//                String responseString = "Response Code : " + response.code() + "\nName : " + responseFromAPI.getUsername() + "\n" + "Email : " + responseFromAPI.getEmail();
-
-                // below line we are setting our
-                // string to our text view.
-                Log.i(String.valueOf(response.code()), "ingfo");
 
             }
 

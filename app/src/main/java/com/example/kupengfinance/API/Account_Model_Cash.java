@@ -36,9 +36,7 @@ public class Account_Model_Cash {
         return cashName;
     }
 
-    public float getCashBalance() {
-        return cashBalance;
-    }
+    public float getCashBalance() { return cashBalance; }
 
     public void setUserId(int userId) {
         this.userId = userId;
