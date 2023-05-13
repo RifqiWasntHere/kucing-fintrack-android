@@ -7,8 +7,7 @@
     tools:context=".Activity.PreviewLoginActivity"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:paddingBottom="50dp"
-    android:background="#E0E0E0">
+    android:paddingBottom="50dp">
 
     <Button
         android:id="@+id/btntoregist"
