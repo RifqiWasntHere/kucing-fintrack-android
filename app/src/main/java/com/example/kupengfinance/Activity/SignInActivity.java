@@ -86,10 +86,9 @@ public class SignInActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-        Toast.makeText(this, "Please Sign In First", Toast.LENGTH_SHORT).show();
+        Intent loginIntent = new Intent(SignInActivity.this, PreviewLoginActivity.class);
+        startActivity(loginIntent);
     }
-
     private void handleLogin(String email, String pass) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://kucing-finance-backend-production.up.railway.app/user/")
